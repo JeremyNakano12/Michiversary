@@ -1,0 +1,124 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f0ff;
+    color: #4a0072;
+    scroll-behavior: smooth;
+}
+
+/* Header y botón de menú */
+header {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 11; /* Encima del menú */
+}
+
+.menu-btn span {
+    width: 30px;
+    height: 4px;
+    background-color: #8e44ad;
+    border-radius: 2px;
+    transition: 0.4s;
+}
+
+/* Menú de pantalla completa */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(142, 68, 173, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: 9;
+}
+
+.menu.active {
+    transform: scale(1);
+}
+
+.menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 7px);
+    background-color: #fff;
+}
+
+.menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -7px);
+    background-color: #fff;
+}
+
+.menu ul {
+    list-style: none;
+    text-align: center;
+}
+
+.menu ul li {
+    margin: 20px 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu ul li a:hover {
+    color: #ffd6ff;
+}
+
+/* Secciones */
+section {
+    min-height: 100vh;
+    padding: 100px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.portada {
+    background: linear-gradient(to bottom right, #8e44ad, #a17cc3);
+    color: white;
+}
+
+.intro, .mensaje-bonito {
+    background-color: #f3e5f5;
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    max-width: 600px;
+}
