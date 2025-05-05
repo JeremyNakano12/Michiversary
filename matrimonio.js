@@ -13,6 +13,7 @@ menuToggle.addEventListener('click', () => {
 });
 
 const loveMessages = [
+  "Waos te amo mucho mi amor",
   "Te amo demasiao",
   "Weño",
   "Te amo mucho sabes?",
@@ -46,7 +47,7 @@ yesBtn.addEventListener('click', () => {
   if (yesClicks < loveMessages.length) {
     message.textContent = loveMessages[yesClicks];
   } else {
-    message.textContent = "Waos te amo mucho";
+    message.textContent = "Waos muz muz";
   }
   yesClicks++;
 });
