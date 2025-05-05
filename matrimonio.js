@@ -75,3 +75,78 @@ noBtn.addEventListener('click', () => {
       }
   }
 });
+// Fireworks animation (hearts)
+const canvas = document.getElementById('fireworks');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+function createHeart(x, y) {
+  const particles = [];
+
+  for (let i = 0; i < 30; i++) {
+    const angle = Math.random() * 2 * Math.PI;
+    const speed = Math.random() * 4 + 2;
+    particles.push({
+      x,
+      y,
+      dx: Math.cos(angle) * speed,
+      dy: Math.sin(angle) * speed,
+      size: Math.random() * 6 + 4,
+      life: 100,
+      color: `hsl(${Math.random() * 60 + 300}, 80%, 60%)`
+    });
+  }
+
+  return particles;
+}
+
+let hearts = [];
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  hearts.forEach((particles, i) => {
+    particles.forEach(p => {
+      p.x += p.dx;
+      p.y += p.dy;
+      p.dy += 0.1; // gravity
+      p.life--;
+      ctx.globalAlpha = p.life / 100;
+      drawHeart(p.x, p.y, p.size, p.color);
+    });
+
+    hearts[i] = particles.filter(p => p.life > 0);
+  });
+
+  hearts = hearts.filter(p => p.length > 0);
+
+  requestAnimationFrame(animate);
+}
+
+function drawHeart(x, y, size, color) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(0, -size / 2, -size, -size / 2, -size, 0);
+  ctx.bezierCurveTo(-size, size, 0, size * 1.5, 0, size * 2);
+  ctx.bezierCurveTo(0, size * 1.5, size, size, size, 0);
+  ctx.bezierCurveTo(size, -size / 2, 0, -size / 2, 0, 0);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.restore();
+}
+
+animate();
+
+yesBtn.addEventListener('click', () => {
+  const x = window.innerWidth / 2 + (Math.random() * 200 - 100);
+  const y = window.innerHeight / 2 + (Math.random() * 100 - 50);
+  hearts.push(createHeart(x, y));
+});
