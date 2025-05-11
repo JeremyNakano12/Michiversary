@@ -150,3 +150,4 @@ yesBtn.addEventListener('click', () => {
   const y = window.innerHeight / 2 + (Math.random() * 100 - 50);
   hearts.push(createHeart(x, y));
 });
+
