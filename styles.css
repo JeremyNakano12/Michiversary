@@ -129,3 +129,10 @@ audio {
     left: 0;
     width: 100%;
   }
+
+img {
+    display: block; 
+    margin: auto;
+    width: 150px;
+    height: 150px;
+}
